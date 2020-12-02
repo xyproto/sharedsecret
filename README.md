@@ -1,4 +1,4 @@
-# sharedsecret
+# sharedsecret [![Build Status](https://travis-ci.com/xyproto/sharedsecret.svg?branch=main)](https://travis-ci.com/xyproto/sharedsecret) [![GoDoc](https://godoc.org/github.com/xyproto/sharedsecret?status.svg)](http://godoc.org/github.com/xyproto/sharedsecret) [![Go Report Card](https://goreportcard.com/badge/github.com/xyproto/sharedsecret)](https://goreportcard.com/report/github.com/xyproto/sharedsecret)
 
 Have a shared secret. Send encrypted messages.
 
@@ -15,17 +15,17 @@ import (
 	"github.com/xyproto/sharedsecret"
 )
 
-const masterPassword = "hunter1"
+const password = "hunter1"
 
 func main() {
 	message := ask.Ask("Type in a short message: ")
-	encryptedMessage, err := sharedsecret.Encrypt(message, masterPassword)
+	encryptedMessage, err := sharedsecret.Encrypt(message, password)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
 	}
 	fmt.Printf("The encrypted message is: % x\n", encryptedMessage)
-	decryptedMessage, err := sharedsecret.Decrypt(encryptedMessage, masterPassword)
+	decryptedMessage, err := sharedsecret.Decrypt(encryptedMessage, password)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
