@@ -5,7 +5,9 @@ import (
 	"crypto/cipher"
 )
 
-func DecryptBytes(data []byte, key [32]byte) ([]byte, error) {
+// DecryptBytes an decrypt the given message, if the correct shared key (32 bytes long) is given
+func DecryptBytes(msg []byte, key [32]byte) ([]byte, error) {
+	// Ref. https://tutorialedge.net/golang/go-encrypt-decrypt-aes-tutorial/
 	c, err := aes.NewCipher(key[:])
 	if err != nil {
 		return []byte{}, err
@@ -15,10 +17,10 @@ func DecryptBytes(data []byte, key [32]byte) ([]byte, error) {
 		return []byte{}, err
 	}
 	nonceSize := gcm.NonceSize()
-	if len(data) < nonceSize {
+	if len(msg) < nonceSize {
 		return []byte{}, err
 	}
-	nonce, data := data[:nonceSize], data[nonceSize:]
+	nonce, data := msg[:nonceSize], msg[nonceSize:]
 	decrypted, err := gcm.Open(nil, nonce, data, nil)
 	if err != nil {
 		return []byte{}, err
@@ -26,6 +28,7 @@ func DecryptBytes(data []byte, key [32]byte) ([]byte, error) {
 	return decrypted, nil
 }
 
+// Decrypt can decrypt the given message, if the correct shared password is given
 func Decrypt(message, password string) (string, error) {
 	var key [32]byte
 	copy(key[:], password)
