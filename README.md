@@ -1,6 +1,6 @@
 # sharedsecret [![Build Status](https://travis-ci.com/xyproto/sharedsecret.svg?branch=main)](https://travis-ci.com/xyproto/sharedsecret) [![GoDoc](https://godoc.org/github.com/xyproto/sharedsecret?status.svg)](http://godoc.org/github.com/xyproto/sharedsecret) [![Go Report Card](https://goreportcard.com/badge/github.com/xyproto/sharedsecret)](https://goreportcard.com/report/github.com/xyproto/sharedsecret)
 
-Have a shared secret. Send encrypted messages. Uses AES from the Go standard library.
+Have a shared secret. Encrypt and decrypt messages. Uses AES from the Go standard library.
 
 ## Example
 
@@ -31,7 +31,7 @@ func main() {
 }
 ```
 
-Interaction with the example program where the typed in message is "hi".
+Interaction with the example program, where the message that is encrypted and then decrypted is `hi`.
 
 ```
 Type in a short message: hi
