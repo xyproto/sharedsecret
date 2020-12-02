@@ -8,17 +8,17 @@ import (
 	"github.com/xyproto/sharedsecret"
 )
 
-const masterPassword = "hunter1"
+const password = "hunter1"
 
 func main() {
 	message := ask.Ask("Type in a short message: ")
-	encryptedMessage, err := sharedsecret.Encrypt(message, masterPassword)
+	encryptedMessage, err := sharedsecret.Encrypt(message, password)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
 	}
 	fmt.Printf("The encrypted message is: % x\n", encryptedMessage)
-	decryptedMessage, err := sharedsecret.Decrypt(encryptedMessage, masterPassword)
+	decryptedMessage, err := sharedsecret.Decrypt(encryptedMessage, password)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
